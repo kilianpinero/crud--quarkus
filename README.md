@@ -1,70 +1,43 @@
-# crud--quarkus
+# CRUD con Quarkus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Aplicacion CRUD simple desarrollado con Quarkus. Expone endpoints REST para realizar operaciones básicas en una entidad `Country`.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## Requisitos
 
-## Running the application in dev mode
+- Java 11
+- Maven 3.6.2
+- H2 Database
 
-You can run your application in dev mode that enables live coding using:
-```shell script
+## Ejecución
+
+Para ejecutar la aplicación, simplemente ejecutar el siguiente comando:
+
+```bash
 ./mvnw compile quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+Esto iniciará la aplicación en modo de desarrollo. Puede acceder a los endpoints REST a través de `http://localhost:8080/country`.
 
-## Packaging and running the application
+## Endpoints
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+La aplicación expone los siguientes endpoints:
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/crud--quarkus-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Related Guides
-
-- Hibernate ORM ([guide](https://quarkus.io/guides/hibernate-orm)): Define your persistent model with Hibernate ORM and Jakarta Persistence
-- JDBC Driver - H2 ([guide](https://quarkus.io/guides/datasource)): Connect to the H2 database via JDBC
-- Agroal - Database connection pool ([guide](https://quarkus.io/guides/datasource)): Pool JDBC database connections (included in Hibernate ORM)
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
+- `GET /country/list`: Obtiene la lista de todos los países.
+- `GET /country/list/{id}`: Obtiene un país por su ID.
+- `POST /country/add`: Agrega un nuevo país.
+- `PUT /country/update`: Actualiza un país existente.
+- `DELETE /country/{id}`: Elimina un país por su ID.
 
 
+## Pruebas
 
-### RESTEasy Reactive
+El objetivo de esta operación es comprobar la rapidez con la que levanta el servicio y poder compararlo con otras aplicaciones hechas con lenguajes de programación diferentes.
+Se han hecho 3 pruebas de lanzamiento de esta aplicación y los resultados son los siguientes:
 
-Easily start your Reactive RESTful Web Services
+- 3489ms
+- 2929ms
+- 2884ms
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+## Conclusión
+
+La aplicación es bastante rápida y se podria considerar para fines en los que se necesite que la rapidez de respuesta sea casi inmediata.
